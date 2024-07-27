@@ -49,7 +49,10 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: ["http://localhost:3000", "https://mern-chat-app-1exj.onrender.com"], // Update with your frontend URL
+    origin: [
+      "http://localhost:3000",
+      "https://mern-chat-app-1exj.onrender.com"
+    ],
     credentials: true,
   },
 });
@@ -80,7 +83,7 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.off("setup", (userData) => {
+  socket.off("setup", () => {
     console.log("USER DISCONNECTED");
     socket.leave(userData._id);
   });
